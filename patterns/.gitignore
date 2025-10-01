@@ -1,0 +1,13 @@
+# Ignore everything in this directory
+*
+!.gitignore
+
+# TypeScript
+*.tsbuildinfo
+dist/
+out/
+build/
+*.d.ts
+
+# Node
+node_modules/
