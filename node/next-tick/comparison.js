@@ -1,0 +1,9 @@
+console.log('sync: start');
+
+setTimeout(() => console.log('setTimeout 0ms'), 0);
+setImmediate(() => console.log('setImmediate'));
+
+Promise.resolve().then(() => console.log('Promise.then'));
+process.nextTick(() => console.log('process.nextTick'));
+
+console.log('sync: end');
