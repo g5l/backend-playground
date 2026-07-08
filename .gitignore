@@ -40,6 +40,9 @@ coverage/
 .DS_Store
 Thumbs.db
 
+# Java build artifacts
+**/target/
+
 # IDEs
 **/.idea/
 .vscode/
