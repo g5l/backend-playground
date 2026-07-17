@@ -17,3 +17,10 @@ A collection of backend experiments and proof-of-concepts across different langu
 ### Node.js
 - `node/lifecycle-events` - Node.js process lifecycle events
 - `node/next-tick` - process.nextTick and event loop experiments
+
+### Patterns
+- `patterns/strategy` - Strategy design pattern implementation
+- `patterns/visitor` - Visitor design pattern implementation
+
+### Java Streams
+- `java-streams/` - Java streams and functional programming experiments
