@@ -1,31 +1,20 @@
 package poc.repository;
 
-import poc.domain.Book;
+import poc.domain.Author;
 
 import java.util.List;
 import java.util.Optional;
 
-public class BookRepository {
+public class AuthorRepository {
 
-    private final List<Book> books = List.of(
-            new Book("b1", "A Wizard of Earthsea", "a1"),
-            new Book("b2", "The Dispossessed", "a1"),
-            new Book("b3", "Dom Casmurro", "a2")
+    private final List<Author> authors = List.of(
+            new Author("a1", "Ursula K. Le Guin"),
+            new Author("a2", "Machado de Assis")
     );
-    
-    public List<Book> findAll() {
-        return books;
-    }
-    
-    public Optional<Book> findById(String id) {
-        return books.stream()
-                .filter(book -> book.id().equals(id))
+
+    public Optional<Author> findById(String id) {
+        return authors.stream()
+                .filter(author -> author.id().equals(id))
                 .findFirst();
-    }
-    
-    public List<Book> findByAuthorId(String authorId) {
-        return books.stream()
-                .filter(book -> book.authorId().equals(authorId))
-                .toList();
     }
 }
