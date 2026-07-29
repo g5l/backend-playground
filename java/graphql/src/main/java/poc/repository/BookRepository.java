@@ -11,4 +11,8 @@ public class BookRepository {
             new Book("b2", "The Dispossessed", "a1"),
             new Book("b3", "Dom Casmurro", "a2")
     );
+
+    public List<Book> findAll() {
+        return books;
+    }
 }
