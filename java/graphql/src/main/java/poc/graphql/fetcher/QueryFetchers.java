@@ -17,4 +17,11 @@ public class QueryFetchers {
     public DataFetcher<List<Book>> books() {
         return env -> bookRepository.findAll();
     }
+
+    public DataFetcher<Book> book() {
+        return env -> {
+            String id = env.getArgument("id");
+            return bookRepository.findById(id).orElse(null);
+        };
+    }
 }
