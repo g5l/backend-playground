@@ -7,6 +7,7 @@ import graphql.GraphQL;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Map;
 
 public class GraphQLHttpHandler implements HttpHandler {
 
@@ -19,6 +20,24 @@ public class GraphQLHttpHandler implements HttpHandler {
 
     @Override
     public void handle(HttpExchange exchange) throws IOException {
+        try {
+            if (!exchange.getRequestMethod().equalsIgnoreCase("POST")) {
+                sendJson(exchange, 405, Map.of("errors", "Only POST is supported"));
+                return;
+            }
+
+            Map<String, Object> body = mapper.readValue(
+                    exchange.getRequestBody(), Map.class);
+
+            String query = (String) body.get("query");
+            if (query == null) {
+                sendJson(exchange, 400, Map.of("errors", "Missing 'query' field"));
+                return;
+            }
+
+        } catch (Exception e) {
+            sendJson(exchange, 500, Map.of("errors", "Internal error: " + e.getMessage()));
+        }
     }
 
     private void sendJson(HttpExchange exchange, int status, Object payload) throws IOException {
