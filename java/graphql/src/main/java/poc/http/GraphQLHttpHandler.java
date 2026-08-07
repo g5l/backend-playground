@@ -3,6 +3,8 @@ package poc.http;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import graphql.ExecutionInput;
+import graphql.ExecutionResult;
 import graphql.GraphQL;
 
 import java.io.IOException;
@@ -34,6 +36,18 @@ public class GraphQLHttpHandler implements HttpHandler {
                 sendJson(exchange, 400, Map.of("errors", "Missing 'query' field"));
                 return;
             }
+
+            @SuppressWarnings("unchecked")
+            Map<String, Object> variables =
+                    (Map<String, Object>) body.getOrDefault("variables", Map.of());
+
+            ExecutionInput input = ExecutionInput.newExecutionInput()
+                    .query(query)
+                    .variables(variables)
+                    .build();
+
+            ExecutionResult result = graphql.execute(input);
+            sendJson(exchange, 200, result.toSpecification());
 
         } catch (Exception e) {
             sendJson(exchange, 500, Map.of("errors", "Internal error: " + e.getMessage()));
