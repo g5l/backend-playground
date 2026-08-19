@@ -23,11 +23,14 @@ public class GraphQLFactory {
     private final QueryFetchers queryFetchers;
     private final BookFetchers bookFetchers;
     private final AuthorFetchers authorFetchers;
+    private final MutationFetchers mutationFetchers;
 
     public GraphQLFactory(QueryFetchers queryFetchers,
+                          MutationFetchers mutationFetchers,
                           BookFetchers bookFetchers,
                           AuthorFetchers authorFetchers) {
         this.queryFetchers = queryFetchers;
+        this.mutationFetchers = mutationFetchers;
         this.bookFetchers = bookFetchers;
         this.authorFetchers = authorFetchers;
     }
@@ -48,6 +51,8 @@ public class GraphQLFactory {
                         .dataFetcher("author", bookFetchers.author()))
                 .type(newTypeWiring("Author")
                         .dataFetcher("books", authorFetchers.books()))
+                .type(newTypeWiring("Mutation")
+                        .dataFetcher("addBook", mutationFetchers.addBook()))
                 .build();
     }
 

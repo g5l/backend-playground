@@ -21,8 +21,10 @@ public class Main {
         QueryFetchers queryFetchers = new QueryFetchers(bookRepository);
         BookFetchers bookFetchers = new BookFetchers(authorRepository);
         AuthorFetchers authorFetchers = new AuthorFetchers(bookRepository);
+        MutationFetchers mutationFetchers = new MutationFetchers(bookRepository);
 
-        GraphQL graphql = new GraphQLFactory(queryFetchers, bookFetchers, authorFetchers).create();
+        GraphQL graphql = new GraphQLFactory(
+                queryFetchers, mutationFetchers, bookFetchers, authorFetchers).create();
 
         HttpServer server = HttpServer.create(new InetSocketAddress(4000), 0);
         server.createContext("/graphql", new GraphQLHttpHandler(graphql));
