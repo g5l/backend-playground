@@ -8,6 +8,7 @@ import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
 import poc.graphql.fetcher.AuthorFetchers;
 import poc.graphql.fetcher.BookFetchers;
+import poc.graphql.fetcher.MutationFetchers;
 import poc.graphql.fetcher.QueryFetchers;
 
 import java.io.IOException;
