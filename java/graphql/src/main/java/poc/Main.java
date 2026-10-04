@@ -5,6 +5,7 @@ import graphql.GraphQL;
 import poc.graphql.GraphQLFactory;
 import poc.graphql.fetcher.AuthorFetchers;
 import poc.graphql.fetcher.BookFetchers;
+import poc.graphql.fetcher.MutationFetchers;
 import poc.graphql.fetcher.QueryFetchers;
 import poc.http.GraphQLHttpHandler;
 import poc.repository.AuthorRepository;
