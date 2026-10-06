@@ -5,6 +5,7 @@ import poc.domain.Book;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class BookRepository {
 
@@ -14,8 +15,16 @@ public class BookRepository {
             new Book("b3", "Dom Casmurro", "a2")
     ));
 
+    private final AtomicInteger nextId = new AtomicInteger(books.size() + 1);
+
     public List<Book> findAll() {
         return books;
+    }
+
+    public Book add(String title, String authorId) {
+        Book book = new Book("b" + nextId.getAndIncrement(), title, authorId);
+        books.add(book);
+        return book;
     }
 
     public Optional<Book> findById(String id) {
