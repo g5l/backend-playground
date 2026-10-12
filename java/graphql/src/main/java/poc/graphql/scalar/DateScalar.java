@@ -28,6 +28,20 @@ public final class DateScalar {
           throw new CoercingSerializeException(
               "Expected a LocalDate but got: " + dataFetcherResult);
         }
+
+        // Variable value -> Java value. Input arrives already JSON-parsed to a String.
+        @Override
+        public LocalDate parseValue(Object input, GraphQLContext context, Locale locale)
+            throws CoercingParseValueException {
+          if (input instanceof String s) {
+            try {
+              return LocalDate.parse(s, DateTimeFormatter.ISO_LOCAL_DATE);
+            } catch (DateTimeParseException e) {
+              throw new CoercingParseValueException("Invalid date: " + s, e);
+            }
+          }
+          throw new CoercingParseValueException("Expected a String but got: " + input);
+        }
       })
       .build();
 
