@@ -42,6 +42,23 @@ public final class DateScalar {
           }
           throw new CoercingParseValueException("Expected a String but got: " + input);
         }
+
+        // Inline query literal -> Java value. Input is an AST node from the parsed query.
+        @Override
+        public LocalDate parseLiteral(Value<?> input, CoercedVariables variables,
+                                      GraphQLContext context, Locale locale)
+            throws CoercingParseLiteralException {
+          if (input instanceof StringValue sv) {
+            try {
+              return LocalDate.parse(sv.getValue(), DateTimeFormatter.ISO_LOCAL_DATE);
+            } catch (DateTimeParseException e) {
+              throw new CoercingParseLiteralException(
+                  "Invalid date literal: " + sv.getValue(), e);
+            }
+          }
+          throw new CoercingParseLiteralException(
+              "Expected a string literal but got: " + input);
+        }
       })
       .build();
 
