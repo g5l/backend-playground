@@ -13,7 +13,7 @@ public class BookRepository {
     private final List<Book> books = new ArrayList<>(List.of(
         new Book("b1", "A Wizard of Earthsea", "a1", LocalDate.of(1968, 11, 1)),
         new Book("b2", "The Dispossessed", "a1", LocalDate.of(1974, 5, 1)),
-            new Book("b3", "Dom Casmurro", "a2")
+        new Book("b3", "Dom Casmurro", "a2", LocalDate.of(1899, 1, 1))
     ));
 
     private final AtomicInteger nextId = new AtomicInteger(books.size() + 1);
