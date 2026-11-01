@@ -22,7 +22,7 @@ public class BookRepository {
         return books;
     }
 
-    public Book add(String title, String authorId) {
+    public Book add(String title, String authorId, LocalDate publishedAt) {
         Book book = new Book("b" + nextId.getAndIncrement(), title, authorId);
         books.add(book);
         return book;
