@@ -3,6 +3,7 @@ package poc.graphql.fetcher;
 import graphql.schema.DataFetcher;
 import poc.domain.Book;
 import poc.repository.BookRepository;
+import java.time.LocalDate;
 
 import java.util.Map;
 
