@@ -20,6 +20,7 @@ public class MutationFetchers {
             Map<String, Object> input = env.getArgument("input");
             String title = (String) input.get("title");
             String authorId = (String) input.get("authorId");
+            LocalDate publishedAt = (LocalDate) input.get("publishedAt");
             return bookRepository.add(title, authorId);
         };
     }
