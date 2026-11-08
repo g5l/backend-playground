@@ -21,7 +21,7 @@ public class MutationFetchers {
             String title = (String) input.get("title");
             String authorId = (String) input.get("authorId");
             LocalDate publishedAt = (LocalDate) input.get("publishedAt");
-            return bookRepository.add(title, authorId);
+            return bookRepository.add(title, authorId, publishedAt);
         };
     }
 }
